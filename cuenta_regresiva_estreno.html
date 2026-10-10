@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎃STEAL A BRENBROT🎃 ESTRENO</title>
+    <!-- Tailwind CSS for modern responsive layout -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: radial-gradient(circle at center, #1b0f2e 0%, #0a0512 100%);
+        }
+        .title-font {
+            font-family: 'Fredoka One', cursive;
+        }
+        .glow-orange {
+            text-shadow: 0 0 20px rgba(249, 115, 22, 0.6), 0 0 40px rgba(249, 115, 22, 0.3);
+        }
+        .glow-box {
+            box-shadow: 0 8px 32px 0 rgba(249, 115, 22, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+        .pulse-slow {
+            animation: pulse 3s infinite ease-in-out;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.03); opacity: 0.9; }
+        }
+    </style>
+</head>
+<body class="min-h-screen text-white flex flex-col items-center justify-center p-4 relative overflow-hidden select-none">
+
+    <div class="absolute top-10 left-10 text-6xl opacity-10 blur-sm pointer-events-none">🎃</div>
+    <div class="absolute bottom-10 right-10 text-7xl opacity-10 blur-sm pointer-events-none">👻</div>
+    <div class="absolute top-1/4 right-1/4 text-5xl opacity-10 blur-sm pointer-events-none">🍬</div>
+    <div class="absolute bottom-1/4 left-1/4 text-6xl opacity-10 blur-sm pointer-events-none">🎃</div>
+
+    <main class="w-full max-w-xl mx-auto text-center z-10">
+        <div class="bg-slate-900/80 backdrop-blur-xl p-8 sm:p-12 rounded-3xl glow-box border border-orange-500/30 pulse-slow transition-all duration-500">
+            
+            <!-- Header Text -->
+            <div class="mb-8">
+                <span class="inline-block px-4 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/30 text-orange-400 font-semibold text-xs sm:text-sm tracking-wider uppercase mb-3">
+                    ⏰ Evento En Vivo
+                </span>
+                <h1 class="title-font text-3xl sm:text-5xl text-orange-400 glow-orange tracking-wide leading-tight">
+                    🎃STEAL A BRENBROT🎃<br>
+                    <span class="text-2xl sm:text-3xl text-white opacity-90">ESTRENO EN:</span>
+                </h1>
+            </div>
+
+            <div id="countdown" class="grid grid-cols-3 gap-3 sm:gap-6 my-8">
+                <!-- Hours -->
+                <div class="flex flex-col items-center justify-center bg-slate-950/70 p-4 sm:p-6 rounded-2xl border border-slate-800/80 shadow-inner">
+                    <span id="hours" class="title-font text-4xl sm:text-6xl text-orange-400 tracking-wider">00</span>
+                    <span class="text-xs sm:text-sm font-semibold text-slate-400 uppercase tracking-widest mt-2">Horas</span>
+                </div>
+                <!-- Minutes -->
+                <div class="flex flex-col items-center justify-center bg-slate-950/70 p-4 sm:p-6 rounded-2xl border border-slate-800/80 shadow-inner">
+                    <span id="minutes" class="title-font text-4xl sm:text-6xl text-orange-400 tracking-wider">00</span>
+                    <span class="text-xs sm:text-sm font-semibold text-slate-400 uppercase tracking-widest mt-2">Minutos</span>
+                </div>
+                <!-- Seconds -->
+                <div class="flex flex-col items-center justify-center bg-slate-950/70 p-4 sm:p-6 rounded-2xl border border-slate-800/80 shadow-inner">
+                    <span id="seconds" class="title-font text-4xl sm:text-6xl text-orange-500 tracking-wider animate-pulse">00</span>
+                    <span class="text-xs sm:text-sm font-semibold text-slate-400 uppercase tracking-widest mt-2">Segundos</span>
+                </div>
+            </div>
+
+            <div id="message" class="hidden my-8 py-6 px-4 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl">
+                <h2 class="title-font text-3xl sm:text-4xl text-emerald-400 animate-bounce">
+                    ¡El estreno ha comenzado! 🚀🔥
+                </h2>
+                <p class="text-slate-300 text-sm mt-2">¡Entra al juego ahora y diviértete!</p>
+            </div>
+
+            <div class="pt-4 border-t border-slate-800 text-slate-400 text-xs sm:text-sm flex justify-center items-center gap-2">
+                <span>🗓️ Hoy 10 de Octubre, 2026</span>
+                <span>•</span>
+                <span>📍 4:00 PM Hora México</span>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Target Date: October 10, 2026 at 16:00:00 (4:00 PM) Mexico Time
+        // ISO Format with offset for Mexico City standard time (UTC-6)
+        const targetDate = new Date("2026-10-10T16:00:00-06:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance <= 0) {
+                // Time's up! Show premiere message
+                document.getElementById("countdown").classList.add("hidden");
+                document.getElementById("message").classList.remove("hidden");
+                return;
+            }
+
+            // Calculations for hours, minutes and seconds
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display in DOM with two-digit padding
+            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+        }
+
+        // Run immediately on page load
+        updateCountdown();
+
+        // Update every 1 second
+        const timerInterval = setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
